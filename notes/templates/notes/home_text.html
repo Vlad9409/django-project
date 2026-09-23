@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <p>Welcome to our platform</p>
+    <div class="items-block">
+        {% for course in courses %}
+        <div class="card">
+            <h2>{{course.name}}</h2>
+            <p>Programing course</p>
+            <p>Price: {{course.price}} USD</p>
+            {% if course.avaliable %}
+            <p style="color: green;">Avaliable</p>
+            {% else %}
+            <p style="color: red;">Coming soon</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
