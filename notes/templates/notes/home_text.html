@@ -13,9 +13,8 @@
     <div class="items-block">
         {% for note in notes %}
         <div class="card">
-            <h2>{{course.name}}</h2>
-            <p>My notes</p>
-            <p>Price: {{course.status}}</p>
+            <h3>{{note.name}}</h3>
+            <p>status: {{note.status}}</p>
         </div>
         {% endfor %}
     </div>
