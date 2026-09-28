@@ -5,16 +5,16 @@ from django.http import HttpResponse
 
 def home_text(request):
     
-    courses_data = [
-            {'name' : 'Lear Python', 'price' : 100, 'avaliable' : True},
-            {'name' : 'Lear Django', 'price' : 50, 'avaliable' : True},
-            {'name' : 'Advance JavaScript', 'price' : 80, 'avaliable' : False},
-            {'name' : 'Devops courses', 'price' : 70, 'avaliable' : False},
-            {'name' : 'Reacrt advance', 'price' : 90, 'avaliable' : False},
+    notes_data = [
+            {'name' : 'Buy a product', 'status' : 'done'},
+            {'name' : 'go to gym', 'status' : 'not',},
+            {'name' : 'Learn python', 'status' : 'done',},
+            {'name' : 'Watch movie', 'status' : 'not',},
+            {'name' : 'Go sleep', 'status' : 'not',},
         ]
     
     context = {
-        'title' : 'Our courses',
-        'courses' : courses_data
+        'title' : 'My notes',
+        'notes' : notes_data
     }
     return render(request, 'notes/home_text.html', context)
