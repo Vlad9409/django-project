@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><Courses></title>
+    <title>Courses</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
@@ -13,9 +13,15 @@
     <div class="items-block">
         {% for note in notes %}
         <div class="card">
-            <h3>{{note.name}}</h3>
-            <p>status: {{note.status}}</p>
+            <h3>{{ note.title }}</h3>
+            <p><strong>Category:</strong> {{ note.category.title }}</p>
+            <p>{{ note.text }}</p>
+            {% if note.reminder %}
+                <p><small>Reminder: {{ note.reminder|date:"Y-m-d H:i" }}</small></p>
+            {% endif %}
         </div>
+        {% empty %}
+            <p>No notes found.</p>
         {% endfor %}
     </div>
 </body>
