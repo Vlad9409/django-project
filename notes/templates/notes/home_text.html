@@ -3,13 +3,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>Notes</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
-    <h1>{{title}}</h1>
-    <p>My notes</p>
+    <h1>{{ title }}</h1>
+    
+    <form method="GET" action="">
+        <input type="text" name="search" value="{{ search_query }}" placeholder="Пошук за назвою...">
+        
+        <select name="category">
+            <option value="">All Category</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if cat.id == category_id %}selected{% endif %}>
+                    {{ cat.title }}
+                </option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Search / filter</button>
+        <a href="{% url 'home_text' %}">Скинути</a>
+    </form>
+
+    <br>
+    <a href="{% url 'note_create' %}"><strong>+ Create note</strong></a>
+    <hr>
+
     <div class="items-block">
         {% for note in notes %}
         <div class="card">
@@ -19,9 +38,13 @@
             {% if note.reminder %}
                 <p><small>Reminder: {{ note.reminder|date:"Y-m-d H:i" }}</small></p>
             {% endif %}
+            
+            <br>
+            <a href="{% url 'note_edit' note.id %}">Edit details</a> | 
+            <a href="{% url 'note_delete' note.id %}">Delete</a>
         </div>
         {% empty %}
-            <p>No notes found.</p>
+            <p>Note not found.</p>
         {% endfor %}
     </div>
 </body>

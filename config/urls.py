@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from notes.views import home_text
+from notes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_text)
+    path('', views.home_text, name='home_text'),
+    path('create/', views.note_create, name='note_create'),
+    path('<int:pk>/edit/', views.note_edit, name='note_edit'),
+    path('<int:pk>/delete/', views.note_delete, name='note_delete'),
 ]
