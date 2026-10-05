@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ action_title }}</title>
-</head>
-<body>
-    <h1>{{ action_title }}</h1>
-    
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-    
-    <br>
-    <a href="{% url 'home_text' %}">Return to home page</a>
-</body>
-</html>
+{% extends 'notes/base.html' %}
+{% block title %}{{ action_title }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow border-0">
+            <div class="card-header bg-dark text-white text-center">
+                <h3 class="mb-0">{{ action_title }}</h3>
+            </div>
+            <div class="card-body p-4 bg-white">
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        {{ form.as_p }}
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">Save the note</button>
+                        <a href="{% url 'home_text' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
